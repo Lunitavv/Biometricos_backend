@@ -13,7 +13,10 @@ app.use(express.json());
 
 // ── Conexión a MongoDB Atlas ──────────────────────────────────────
 // Las credenciales se leen desde .env, NUNCA van en este archivo.
-const client = new MongoClient(process.env.MONGODB_URI);
+const client = new MongoClient(process.env.MONGODB_URI, {
+  tls: true,
+  tlsAllowInvalidCertificates: true
+})
 let db;
 
 async function conectar() {
