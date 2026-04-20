@@ -15,8 +15,9 @@ app.use(express.json());
 // Las credenciales se leen desde .env, NUNCA van en este archivo.
 const client = new MongoClient(process.env.MONGODB_URI, {
   tls: true,
-  tlsAllowInvalidCertificates: true
-})
+  tlsAllowInvalidCertificates: true,
+  serverSelectionTimeoutMS: 5000
+});
 let db;
 
 async function conectar() {
